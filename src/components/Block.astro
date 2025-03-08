@@ -1,0 +1,44 @@
+---
+let {releaseType, name, extraClass} = Astro.props
+
+interface block_size {
+    "cols":number,
+    "rows":number
+}
+
+const detectSize = (releaseType: string): block_size => {
+
+    switch(releaseType){
+        case 'single':
+            return {"cols":1, "rows":2}
+        case 'ab': 
+            return {"cols":1, "rows":2}
+        case 'ep':
+            return {"cols":2, "rows":2}
+        case 'album': 
+            return {"cols":3, "rows":2}
+        case 'compilation':
+            return {"cols":2, "rows":3}
+        default:
+            return {"cols":1, "rows":2}
+    }
+}
+
+let size:block_size = detectSize(releaseType);
+
+const colsClassMap:any = { 1: "col-span-1", 2: "col-span-2", 3: "col-span-3" };
+const rowsClassMap:any = { 1: "row-span-1", 2: "row-span-2", 3: "row-span-3" };
+
+let sizeClass: string = `${colsClassMap[size.cols]} ${rowsClassMap[size.rows]}`;
+
+let image: string = "https://i.scdn.co/image/ab67616d0000b273058c12883044931d1731aeab";
+---
+
+
+<article class:list={[sizeClass, " group transform relative flex flex-col rounded-2xl transition-all ease-in-out overflow-hidden hover:cursor-pointer ring-2 ring-black/0 hover:ring-white " ,extraClass]}>
+    <img class="transform transition h-full object-cover group-hover:scale-110 ease-in-out" src={image} />
+    <div class="transform absolute inset-0 p-4 flex flex-col justify-end transition ease-in-out group-hover:shadow-[inset_0px_0px_60px_-10px_rgba(0,_0,_0,_0.8)] shadow-[inset_0px_-40px_60px_-10px_rgba(0,_0,_0,_0.35)]">
+        <h2 class="text-4xl text-white">{name}</h2>
+        <h3 class="text-lg text-white">Barely Alive</h3>
+    </div>
+</article>
