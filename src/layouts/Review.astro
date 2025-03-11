@@ -1,0 +1,20 @@
+---
+import NavBar from "../components/NavBar.astro";
+import Layout from "./Layout.astro";
+const {frontmatter} = Astro.props
+
+---
+
+<Layout customTitle="">
+    <NavBar></NavBar>
+    
+	<article>
+		<h1>{frontmatter.data.title}</h1>
+		<p>{frontmatter.data.artists}</p>
+		<p>{frontmatter.data.releaseDate}</>
+		<p>{frontmatter.data.type}</p>
+		<p>{frontmatter.data.rate}</p>
+		<p>{frontmatter.data.spotifyUrl}</p>
+		<slot></slot>
+	</article>
+</Layout>

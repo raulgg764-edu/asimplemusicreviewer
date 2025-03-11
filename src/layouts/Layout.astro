@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+const {customTitle} = Astro.props 
 ---
 
 <!doctype html>
@@ -8,9 +9,9 @@ import "../styles/global.css";
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>a simple music reviewer</title>
+		<title>a simple music reviewer: {customTitle}</title>
 	</head>
-	<body class="w-full min-h-screen flex flex-col md:justify-center items-center bg-gray-900 pt-16 md:p-0">
+	<body class="w-full min-h-screen flex flex-col md:justify-center items-center bg-gray-900 pt-16 ">
 		<slot />
 	</body>
 </html>
