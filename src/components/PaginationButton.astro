@@ -1,0 +1,20 @@
+---
+const {prevPage, nextPage} = Astro.props;
+---
+
+<div class="transition-all bg-slate-800 hover:bg-slate-700 rounded-full  text-white">
+    {
+        prevPage && (
+            <a href={`?page=${prevPage}`} class="p-4">
+                Previous
+            </a>
+        )
+    }
+    {
+        nextPage && (
+            <a href={`?page=${nextPage}`} class="p-4">
+                Next
+            </a>
+        )
+    }
+</div>

@@ -12,37 +12,40 @@ const dateRelease = new Date(release.releaseDate).toLocaleDateString("en-US", {
 });
 ---
 
-<Layout customTitle=`${release.artists[0]} - ${release.title}`>
+<Layout customTitle=`${release.artists[0]} - ${release.title}` extraClass="bg-slate-900">
 	<NavBar />
 	<section class="min-h-screen flex flex-col text-white w-full relative">
 		<header
 			class="flex flex-col items-start justify-end w-full relative "
 		>
-			<img
+			<!--<img
 				class="absolute z-0 w-full blur-3xl object-cover h-full"
 				src="https://i.scdn.co/image/ab67616d0000b273cf99b38d37e2680f7dec6c9b"
-			/>
+				draggable="false"
+				
+			/>-->
 
 			<div class="z-1 px-16 md:pt-24 flex flex-col md:flex-row justify-end items-center md:items-star">
 				<img
-					class="w-96 order-2 md:order-1 "
+					class="w-96 order-2 md:order-1 transition transform"
 					src="https://i.scdn.co/image/ab67616d0000b273cf99b38d37e2680f7dec6c9b"
 					draggable="false"
+					transition:name=`image-${frontmatter.id}`
 				/>
 				<div class="flex flex-col md:pl-8 py-8 pt-24 order-1 md:order-2 w-full">
-					<h1 class="font-bold text-6xl text-wrap md:text-7xl pb-4 break-words break-all md:break-normal">{release.title}</h1>
-					<h3 class="text-2xl md:text-4xl text-wrap font-thin break-words break-all md:break-normal">
+					<h1 transition:name=`title-${frontmatter.id}` class="font-bold text-6xl text-wrap md:text-7xl pb-4 break-words break-all md:break-normal">{release.title}</h1>
+					<h3 transition:name=`artists-${frontmatter.id}` class="text-2xl md:text-4xl text-wrap font-thin break-words break-all md:break-normal">
 						{release.artists.join(", ")}
 					</h3>
 
-					<div class="flex flex-row gap-4 py-4">
+					<div transition:name=`releaseType-${frontmatter.id}`class="flex flex-row gap-4 py-4">
 						<h4 class="text-2xl capitalize">
 							{
 								release.type
 							}
 						</h4>
 						<span>·</span>
-						<h4 class="text-2xl">{dateRelease}</h4>
+						<h4 transition:name=`dateRelease-${frontmatter.id}` class="text-2xl">{dateRelease}</h4>
 					</div>
 					<h4 class="text-3xl">{release.rate}⭐</h4>
 				</div>
