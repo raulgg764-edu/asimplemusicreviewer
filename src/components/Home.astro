@@ -8,7 +8,7 @@ const releases = await getHomeReleases();
 
     {
         releases.map((release:any)=>
-            <Block extraClass="bg-blue-" release={release}></Block>
+            <Block release={release}></Block>
         )
     }
 </section>

@@ -17,7 +17,7 @@ const detectSize = (releaseType: string): block_size => {
         case "album":
             return { cols: 3, rows: 2 };
         case "compilation":
-            return { cols: 2, rows: 3 };
+            return { cols: 3, rows: 2 };
         default:
             return { cols: 1, rows: 2 };
     }
@@ -45,7 +45,7 @@ let image: string =
     href=`../reviews/${releaseItem.id}`
 >
     <article class:list={[
-        "group transform relative flex flex-col overflow-hidden  ",
+        "group transform relative flex flex-col overflow-hidden  h-full",
     ]}>
         <img
             class="transform transition h-full object-cover group-hover:scale-110 ease-in-out"
@@ -54,8 +54,8 @@ let image: string =
         <div
             class="transform absolute inset-0 p-4 flex flex-col justify-end transition ease-in-out group-hover:shadow-[inset_0px_0px_60px_-10px_rgba(0,_0,_0,_0.8)] shadow-[inset_0px_-40px_60px_-10px_rgba(0,_0,_0,_0.35)]"
         >
-            <h2 class="text-4xl text-white">{releaseItem.data.title}</h2>
-            <h3 class="text-lg text-white line-clamp-1">
+            <h2 class="text-2xl md:text-4xl text-white">{releaseItem.data.title}</h2>
+            <h3 class="text-sm md:text-lg text-white line-clamp-1">
                 {releaseItem.data.artists.join(", ")}
             </h3>
         </div>

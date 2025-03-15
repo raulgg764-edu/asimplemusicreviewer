@@ -1,0 +1,34 @@
+---
+const { review } = Astro.props;
+
+const dateRelease = new Date(review.data.releaseDate).toLocaleDateString(
+    "en-US",
+    {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+    },
+);
+---
+
+<a
+    href=`../reviews/${review.id}`
+    class="group transition-all ease-in-out transform text-white w-full bg-slate-800 hover:bg-slate-700 rounded-2xl px-4 md:px-8 py-4 hover:shadow-lg dark:hover:shadow-black/30 hover:scale-105"
+>
+    <article class="flex flex-row w-full items-center justify-between">
+        <div class="flex flex-col w-6/12 md:w-10/12">
+            <h2 class="text-3xl">{review.data.title}</h2>
+            <h2 class="text-lg font-thin line-clamp-3">
+                {review.data.artists.join(", ")}
+            </h2>
+            <h2 class="capitalize">{review.data.type}</h2>
+            <h3>{dateRelease}</h3>
+        </div>
+        <div class="flex flex-row">
+            <img
+                src="https://i.scdn.co/image/ab67616d0000b273cf99b38d37e2680f7dec6c9b"
+                class="w-36"
+            />
+        </div>
+    </article>
+</a>
