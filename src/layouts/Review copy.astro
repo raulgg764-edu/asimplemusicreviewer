@@ -2,8 +2,7 @@
 import NavBar from "../components/NavBar.astro";
 import LayoutReview from "./LayoutReview.astro";
 
-export const prerender = false;
-
+export const prerender = false; 
 const { frontmatter } = Astro.props;
 
 const release = frontmatter.data;
@@ -13,17 +12,40 @@ const dateRelease = new Date(release.releaseDate).toLocaleDateString("en-US", {
 	month: "short",
 	year: "numeric",
 });
-const img = release.img;
-const color = release.color
+const img = "https://i.scdn.co/image/ab67616d0000b273b1dbf375b392d50ed12e5a0b";
 ---
 
-<LayoutReview
-	customTitle=`${release.artists[0]} - ${release.title}`
-	color={color}
->
-	<NavBar transition:persist />
+<script is:inline type="module">
+	import { getDominantColor } from "../../node_modules/@rtcoder/dominant-color";
+
+	const imgElement = document.querySelector("#img");
+	const body = document.querySelector("body");
+
+	let colorDominant = "";
+	getDominantColor(imgElement, {
+		downScaleFactor: 128,
+		skipPixels: 1,
+		colorsPaletteLength: 10,
+		paletteWithCountOfOccurrences: false,
+		colorFormat: "hex",
+		callback: (color, palette) => {
+			colorDominant = palette[9];
+			body.style.background = `rgb(${colorDominant})`;
+		},
+	});
+</script>
+
+<LayoutReview customTitle=`${release.artists[0]} - ${release.title}`>
+	<NavBar />
 	<section class="min-h-screen flex flex-col text-white w-full relative">
-		<header class="flex flex-col justify-end w-full relative ">
+		<header class="flex flex-col items-start justify-end w-full relative">
+			<!--<img
+				class="absolute z-0 w-full blur-3xl object-cover h-full"
+				src="https://i.scdn.co/image/ab67616d0000b273cf99b38d37e2680f7dec6c9b"
+				draggable="false"
+				
+			/>-->
+
 			<div
 				class="z-1 px-16 md:pt-24 flex flex-col md:flex-row justify-end items-center md:items-star"
 			>

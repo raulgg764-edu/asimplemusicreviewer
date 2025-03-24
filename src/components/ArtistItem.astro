@@ -1,2 +1,29 @@
+---
+const { artist, reviews } = Astro.props;
 
-<h1></h1>
+const getArtistReleases = (artist: string) => {
+    return reviews.filter((release: any) => release.data.artists.includes(artist))
+}
+
+const releases = getArtistReleases(artist);
+---
+
+<details 
+    name="artists"
+    class=`w-full group transition-all ease-in-out transform text-white bg-slate-800  rounded-2xl p-4 hover:shadow-lg hover:bg-slate-700 `
+>
+    <summary class="list-none hover:cursor-pointer pl-4 select-none font-bold">{artist}</summary>
+    <div class="p-4">
+        {
+            releases.map((rel: any) => {
+                return(
+                    <a class="p-4 rounded-2xl flex w-full justify-between items-center transition-all ease-in-out transform hover:bg-white hover:text-black hover:font-semibold hover:scale-105" href=`../reviews/${rel.id}` >
+                        <p>{rel.data.title}</p>
+                        <img src={rel.data.img} class="h-20"/>
+                    </a>
+                    
+                )
+            })
+        }
+    </div>
+</details>

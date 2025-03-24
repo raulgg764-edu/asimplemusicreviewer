@@ -10,7 +10,10 @@ const reviews = defineCollection({
         releaseDate: z.string().date(),
         type: z.enum(["album", "ep", "single","a/b","compilation"]),
         rate: z.number(),
-        spotifyUrl: z.string().url()
+        spotifyUrl: z.string().url(),
+        img: z.string().url(),
+        color: z.string(),
+        reviewDate: z.string().date()
       })
     
 })

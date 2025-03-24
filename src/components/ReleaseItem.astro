@@ -16,11 +16,11 @@ const dateRelease = new Date(review.data.releaseDate).toLocaleDateString(
 
 <a
     href=`../reviews/${review.id}`
-    class="h-full group transition-all ease-in-out transform text-white w-full bg-slate-800 hover:bg-slate-700 rounded-2xl px-4 md:px-8 py-4 hover:shadow-lg dark:hover:shadow-black/30 hover:scale-105"
+    class=`h-full group transition-all ease-in-out transform text-white w-full bg-slate-800 hover:bg-slate-700 rounded-2xl px-4 md:px-8 py-4 hover:shadow-lg dark:hover:shadow-black/30 hover:scale-105`
 >
     <article class="flex flex-row w-full items-center justify-between">
         <div class="flex flex-col w-6/12 md:w-10/12">
-            <h2 transition:name=`title-${review.id}` class="text-3xl">{review.data.title}</h2>
+            <h2 transition:name=`title-${review.id}` class="text-2xl line-clamp-2 md:text-3xl">{review.data.title}</h2>
             <p transition:name=`artists-${review.id}` class="text-lg font-thin line-clamp-1">
                 {review.data.artists.join(", ")}
             <p/>
@@ -29,7 +29,7 @@ const dateRelease = new Date(review.data.releaseDate).toLocaleDateString(
         </div>
         <div class="flex flex-row">
             <img
-                src="https://i.scdn.co/image/ab67616d0000b273cf99b38d37e2680f7dec6c9b"
+                src={review.data.img}
                 class="w-36"
                 transition:name=`image-${review.id}`
             />

@@ -1,4 +1,5 @@
 import { getCollection } from "astro:content";
+import { getDominantColor } from "@rtcoder/dominant-color";
 
 async function getHomeReleases(){
     const reviews = await getCollection('reviews');
@@ -12,5 +13,8 @@ async function getHomeReleases(){
 
     return latestReleases;
 }
+
+
+
 
 export {getHomeReleases}

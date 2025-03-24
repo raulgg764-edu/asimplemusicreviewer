@@ -23,6 +23,9 @@ releaseDate: '2025-01-31'
 type: 'compilation'
 rate: 6.5
 spotifyUrl: 'https://open.spotify.com/intl-es/album/4K4aN3KFm3ZARF30AXQOKw?si=r-6oa3AESqCMMqNpN4ZfSA'
+img: 'https://i.scdn.co/image/ab67616d00001e02cf99b38d37e2680f7dec6c9b'
+color: '#443922'
+reviewDate: '2025-03-15'
 ---
 
 Un single que captura la esencia del synthwave moderno. Con sintetizadores envolventes y un ritmo pegajoso, **SOS** es una experiencia hipnótica que te transporta a un mundo de neón y nostalgia.
@@ -52,4 +55,3 @@ Beatae esse cum animi officiis veritatis consectetur provident est exercitatione
 Voluptatem maxime consequuntur magnam sed rem delectus sunt, error dolorem repellat dolor nemo alias commodi aperiam? Dolorem, atque corporis dolorum consectetur cumque assumenda eos ipsa ex sint hic? Voluptates, sequi!
 Corporis eos labore laudantium illo voluptatum reiciendis explicabo minima, quo totam cupiditate nesciunt dolorem repudiandae exercitationem tempora veritatis placeat maiores magni. Fuga voluptatibus odio eligendi quos molestias quis omnis necessitatibus.
 Tempora asperiores enim, aspernatur eos est atque exercitationem ipsam cumque nemo a quam odio. Quaerat nemo, ab ipsum doloribus rem ratione voluptate facilis aliquid, eligendi dicta ipsa id tempora enim.
-

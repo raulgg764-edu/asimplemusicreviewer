@@ -2,37 +2,39 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import NavBar from "../../components/NavBar.astro";
-import ReleaseItem from "../../components/ReleaseItem.astro";
 import PaginationButton from "../../components/PaginationButton.astro";
+import ArtistItem from "../../components/ArtistItem.astro";
 
 export const prerender = false;
 
 const reviews = await getCollection('reviews');
 const sortedReviews = reviews.sort((a,b)=> new Date(b.data.releaseDate).getTime() - new Date(a.data.releaseDate).getTime());
+const artists = [...new Set( sortedReviews.map((val)=>{
+	return val.data.artists
+}).flat())].sort((a,b) => a.localeCompare(b))
 
-const releasePerPage = 20;
+const artistsPerPage = 16;
 const url = new URL(Astro.request.url);
 const currentPage = Number(url.searchParams.get('page')||1);
 
-const totalReleases = sortedReviews.length;
-const totalPages = Math.ceil(totalReleases / releasePerPage);
+const totalArtists = artists.length;
+const totalPages = Math.ceil(totalArtists  / artistsPerPage);
 
-const startIndex = (currentPage-1) * releasePerPage;
-const endIndex = Math.min(startIndex + releasePerPage, totalReleases);
-const currentReleases = sortedReviews.slice(startIndex, endIndex);
+const startIndex = (currentPage-1) * artistsPerPage;
+const endIndex = Math.min(startIndex + artistsPerPage, totalArtists);
+const currentArtists = artists.slice(startIndex, endIndex);
 
 const prevPage = currentPage > 1 ? currentPage - 1 : null; 
 const nextPage = currentPage < totalPages ? currentPage + 1 : null; 
 
-
 ---
 
-<Layout customTitle="all the releases" extraClass ="md:justify-start py-20 bg-slate-900">
+<Layout customTitle="all the artists" extraClass ="md:justify-start py-20 bg-slate-900">
     <NavBar transition:persist></NavBar>
-    <div class="grid md:grid-cols-2 items-start justify-start gap-4 px-8 md:px-16 pb-8 w-full">
+    <div class="grid md:grid-cols-2 items-start gap-4 px-8 md:px-16 pb-8 w-full">
         {
-            currentReleases.map((review) => 
-                <ReleaseItem review={review}></ReleaseItem>
+            currentArtists.map((artist) => 
+                <ArtistItem artist={artist} reviews={sortedReviews}></ArtistItem>
             )
         }
     </div>
