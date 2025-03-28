@@ -1,5 +1,7 @@
 ---
+
 import NavBar from "../components/NavBar.astro";
+import { getImageSpotify, spotifyToken } from "../utils";
 import LayoutReview from "./LayoutReview.astro";
 
 export const prerender = false;
@@ -13,8 +15,14 @@ const dateRelease = new Date(release.releaseDate).toLocaleDateString("en-US", {
 	month: "short",
 	year: "numeric",
 });
-const img = release.img;
 const color = release.color
+
+const spotifyID = release.spotifyUrl.split("/")[5].split("?")[0]
+//const spotifyImg = getImageSpotify(spotifyID)
+//const spotifyData = await fetch(`https://api.spotify.com/v1/albums/${spotifyID}`,{method:"GET", headers:{'Authorization':`Bearer ${spotifyToken}`}}).then(res => res.json())
+
+//const img = spotifyImg ? spotifyImg : release.img;
+const img = release.img
 ---
 
 <LayoutReview

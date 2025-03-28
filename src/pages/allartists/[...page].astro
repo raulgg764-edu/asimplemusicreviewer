@@ -13,7 +13,7 @@ const artists = [...new Set( sortedReviews.map((val)=>{
 	return val.data.artists
 }).flat())].sort((a,b) => a.localeCompare(b))
 
-const artistsPerPage = 16;
+const artistsPerPage = 8;
 const url = new URL(Astro.request.url);
 const currentPage = Number(url.searchParams.get('page')||1);
 
@@ -29,14 +29,18 @@ const nextPage = currentPage < totalPages ? currentPage + 1 : null;
 
 ---
 
-<Layout customTitle="all the artists" extraClass ="md:justify-start py-20 bg-slate-900">
+<Layout customTitle="all the artists" extraClass ="md:justify-between py-20 bg-radial from-zinc-800 to-zinc-900 ">
     <NavBar transition:persist></NavBar>
-    <div class="grid md:grid-cols-2 items-start gap-4 px-8 md:px-16 pb-8 w-full">
+    <div class="grid md:h-full md:grid-cols-4 items-start gap-4 px-8 md:px-16 w-full grid-rows-2">
         {
             currentArtists.map((artist) => 
                 <ArtistItem artist={artist} reviews={sortedReviews}></ArtistItem>
+                
             )
         }
     </div>
-    <PaginationButton prevPage = {prevPage} nextPage = {nextPage}></PaginationButton>
+    <div class="py-8">
+        <PaginationButton prevPage = {prevPage} nextPage = {nextPage}></PaginationButton>
+    </div>
+    
 </Layout>

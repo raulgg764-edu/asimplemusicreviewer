@@ -1,29 +1,65 @@
 ---
+import { spotifyToken } from "../utils";
+import ArtistsModal from "./ArtistsModal.astro";
+
 const { artist, reviews } = Astro.props;
 
 const getArtistReleases = (artist: string) => {
-    return reviews.filter((release: any) => release.data.artists.includes(artist))
-}
+    return reviews.filter((release: any) =>
+        release.data.artists.includes(artist),
+    );
+};
 
-const releases = getArtistReleases(artist);
+const artistReleases = getArtistReleases(artist);
+const artistID = artist.replaceAll(" ", "");
+
+/*const artistImg  = await fetch(`https://api.spotify.com/v1/search?q=${artist}&type=artist&limit=1`,{method:"GET", headers:{'Authorization':`Bearer ${spotifyToken}`}}).then(res => res.json()).then((data)=>{
+    return data.artists.items[0].images[0].url
+})*/
+const artistImg =
+    "https://i.scdn.co/image/ab6761610000e5ebad063956e4de03835dba4828";
 ---
 
-<details 
-    name="artists"
-    class=`w-full group transition-all ease-in-out transform text-white bg-slate-800  rounded-2xl p-4 hover:shadow-lg hover:bg-slate-700 `
+<article
+    class=`w-full h-full group transition-all ease-in-out transform text-white bg-zinc-900 rounded-2xl hover:scale-105`
+    onclick={`window.modal${artistID}.showModal()`}
 >
-    <summary class="list-none hover:cursor-pointer pl-4 select-none font-bold">{artist}</summary>
-    <div class="p-4">
-        {
-            releases.map((rel: any) => {
-                return(
-                    <a class="p-4 rounded-2xl flex w-full justify-between items-center transition-all ease-in-out transform hover:bg-white hover:text-black hover:font-semibold hover:scale-105" href=`../reviews/${rel.id}` >
-                        <p>{rel.data.title}</p>
-                        <img src={rel.data.img} class="h-20"/>
-                    </a>
-                    
-                )
-            })
-        }
+    <div
+        class="relative list-none hover:cursor-pointer select-none font-bold flex justify-between h-full w-full"
+    >
+        <img class="flex rounded-2xl object-cover w-full" src={artistImg} />
+        <div
+            class="absolute h-full z-1 shadow-[inset_0px_-80px_60px_-10px_rgba(0,_0,_0,_1)] bottom-0 text-white flex items-end w-full rounded-xl"
+        >
+            <p class="line-clamp-1 px-4 py-2 text-2xl">{artist}</p>
+        </div>
     </div>
-</details>
+    <dialog id=`modal${artistID}` class=" backdrop:bg-black/80 w-full xl:w-3/4 xl:h-3/4 rounded-2xl ">
+        <ArtistsModal
+            artist={artist}
+            releases={artistReleases}
+            img={artistImg}
+        />
+    </dialog>
+</article>
+
+<style>
+    
+    dialog[open] {
+        
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        animation: fadein 0.3s ease-in;
+    }
+
+    @keyframes fadein {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+</style>

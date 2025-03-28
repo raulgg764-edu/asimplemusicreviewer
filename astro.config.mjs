@@ -15,7 +15,11 @@ export default defineConfig({
           SPOTIFY_SECRET_KEY: envField.string({
               context:"server",
               access:"secret"
-          })
+          }),
+          SPOTIFY_CLIENT_ID: envField.string({
+            context:"server",
+            access:"secret"
+        })
       }
   },
 
