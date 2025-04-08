@@ -15,14 +15,20 @@ const dateRelease = new Date(release.releaseDate).toLocaleDateString("en-US", {
 	month: "short",
 	year: "numeric",
 });
+
+const dateReviewed = new Date(release.reviewDate).toLocaleDateString("en-US", {
+	day: "numeric",
+	month: "short",
+	year: "numeric",
+});
 const color = release.color
 
 const spotifyID = release.spotifyUrl.split("/")[5].split("?")[0]
-//const spotifyImg = getImageSpotify(spotifyID)
+const spotifyImg = await getImageSpotify(spotifyID, "id")
 //const spotifyData = await fetch(`https://api.spotify.com/v1/albums/${spotifyID}`,{method:"GET", headers:{'Authorization':`Bearer ${spotifyToken}`}}).then(res => res.json())
 
-//const img = spotifyImg ? spotifyImg : release.img;
-const img = release.img
+const img = spotifyImg ? spotifyImg : release.img;
+//const img = release.img
 ---
 
 <LayoutReview
@@ -60,7 +66,7 @@ const img = release.img
 
 					<div
 						transition:name=`releaseType-${frontmatter.id}`
-						class="flex flex-row gap-4 py-4"
+						class="flex flex-row gap-4 py-4 items-center"
 					>
 						<h4 class="text-2xl capitalize">
 							{release.type}
@@ -71,6 +77,13 @@ const img = release.img
 							class="text-2xl"
 						>
 							{dateRelease}
+						</h4>
+						<span>·</span>
+						<h4
+							transition:name=`dateRelease-${frontmatter.id}`
+							class="text-2xl"
+						>
+							Reviewed on {dateReviewed}
 						</h4>
 					</div>
 					<h4 class="text-3xl">{release.rate}⭐</h4>

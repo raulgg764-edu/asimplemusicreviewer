@@ -1,5 +1,6 @@
 ---
-import { spotifyToken } from "../utils";
+import { getImage } from "astro:assets";
+import { getImageSpotify, spotifyToken } from "../utils";
 import ArtistsModal from "./ArtistsModal.astro";
 
 const { artist, reviews } = Astro.props;
@@ -16,8 +17,7 @@ const artistID = artist.replaceAll(" ", "");
 /*const artistImg  = await fetch(`https://api.spotify.com/v1/search?q=${artist}&type=artist&limit=1`,{method:"GET", headers:{'Authorization':`Bearer ${spotifyToken}`}}).then(res => res.json()).then((data)=>{
     return data.artists.items[0].images[0].url
 })*/
-const artistImg =
-    "https://i.scdn.co/image/ab6761610000e5ebad063956e4de03835dba4828";
+const artistImg = await getImageSpotify(artistID, "search")
 ---
 
 <article

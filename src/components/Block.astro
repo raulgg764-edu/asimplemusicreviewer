@@ -1,4 +1,6 @@
 ---
+import { getImageSpotify } from "../utils";
+
 let { release, extraClass } = Astro.props;
 
 interface block_size {
@@ -34,12 +36,14 @@ let sizeClass: string = `${colsClassMap[size.cols]} ${rowsClassMap[size.rows]}`;
 
 let image: string = releaseItem.data.img;
 
+const spotifyImg = await getImageSpotify(releaseItem.data.spotifyID, "id")
+const img = spotifyImg ? spotifyImg : releaseItem.data.img;
 ---
 
 <a
     class:list={[
         sizeClass,
-        "group transform relative flex flex-col rounded-2xl transition-all ease-in-out overflow-hidden hover:cursor-pointer ring-2 ring-black/0 hover:ring-white ",
+        "group transform relative flex flex-col rounded-2xl transition-all ease-in-out overflow-hidden hover:cursor-pointer hover:scale-105",
         extraClass,
     ]}
     href=`../reviews/${releaseItem.id}`
@@ -48,8 +52,8 @@ let image: string = releaseItem.data.img;
         "group transform relative flex flex-col overflow-hidden h-full",
     ]}>
         <img
-            class="transform transition h-full object-cover group-hover:scale-110 ease-in-out"
-            src={image}
+            class="transform transition h-full object-cover ease-in-out"
+            src={img}
             transition:name=`image-${release.id}`
             transition:persist
         />

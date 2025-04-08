@@ -1,4 +1,6 @@
 ---
+import { getImageSpotify } from "../utils";
+
 const { review } = Astro.props;
 
 const dateRelease = new Date(review.data.releaseDate).toLocaleDateString(
@@ -10,8 +12,18 @@ const dateRelease = new Date(review.data.releaseDate).toLocaleDateString(
     },
 );
 
+const dateReviewed = new Date(review.data.reviewDate).toLocaleDateString(
+    "en-US",
+    {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+    },
+);
 
 
+const spotifyImg = await getImageSpotify(review.data.spotifyID, "id")
+const img = spotifyImg ? spotifyImg : review.data.img;
 ---
 
 <a
@@ -25,11 +37,15 @@ const dateRelease = new Date(review.data.releaseDate).toLocaleDateString(
                 {review.data.artists.join(", ")}
             <p/>
             <p class="capitalize">{review.data.type}</p>
-            <p >{dateRelease}</p>
+            <div class="flex gap-2">
+                <p>{dateRelease}</p>
+                <span>·</span>
+                <p>Reviewed on {dateReviewed}</p>
+            </div>
         </div>
         <div class="flex flex-row">
             <img
-                src={review.data.img}
+                src={img}
                 class="w-36"
                 transition:name=`image-${review.id}`
             />

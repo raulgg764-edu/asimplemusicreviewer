@@ -35,11 +35,10 @@ const nextPage = currentPage < totalPages ? currentPage + 1 : null;
         {
             currentArtists.map((artist) => 
                 <ArtistItem artist={artist} reviews={sortedReviews}></ArtistItem>
-                
             )
         }
     </div>
-    <div class="py-8">
+    <div class="pt-8">
         <PaginationButton prevPage = {prevPage} nextPage = {nextPage}></PaginationButton>
     </div>
     
