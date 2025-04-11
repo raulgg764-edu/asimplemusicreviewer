@@ -1,21 +1,45 @@
 ---
 import { getCollection, render } from "astro:content";
 import Review from "../../layouts/Review.astro";
+import { getTextColorForBackground } from "../../utils";
 
 export async function getStaticPaths() {
-  const reviews = await getCollection('reviews');
-  return reviews.map(review => ({
+  const reviews = await getCollection("reviews");
+  return reviews.map((review) => ({
     params: { id: review.id },
     props: { review },
   }));
 }
 const { review } = Astro.props;
 const { Content } = await render(review);
-
+const textColor = getTextColorForBackground(review.data.color);
 ---
 
-<Review frontmatter = {review} >
-    <div class="p-16 w-full text-2xl text-pretty ">
-      <Content></Content>
-    </div>
+<Review frontmatter={review}>
+  <div
+    class=`p-16 text-lg md:text-2xl text-pretty text-white break-words
+    prose prose-neutral dark:prose-invert
+    prose-h1:font-bold prose-h1:text-xl
+    prose-h2:text-3xl prose-h2:mb-6 md:prose-h2:text-5xl
+  prose-a:text-blue-600 prose-p:text-justify prose-img:rounded-xl
+    prose-ol:bg-black/10 prose-ol:px-15 prose-ol:py-5 prose-ol:rounded-2xl prose-ol-strong:text-red
+    max-w-screen prose-hr:border-neutral-50 prose-hr:rounded prose-hr:border-2 marker:text-white prose-hr:p-0`
+    >
+  <div class="bg-black/20 p-4 italic font-light text-pretty">
+    <p>
+🔴 Disclaimer: I’m not a musician neither a writer. I’m a music enjoyer and I just want to give my comment on some music, nothing serious. 
+This is my personal opinion, if you doesn’t agree with my opinion is all right. 
+All the numbers and ratings are just a way to show how I enjoyed a song, I know you can’t just qualify a song with a raw number, im using it just to tell if something is good or not.
+At the end of the day, art is subjective and everyone has a valid opinion.
+    </p>
+  </div>
+    <Content />
+  </div>
 </Review>
+
+<style>
+  marker{
+    
+  }
+</style>
+

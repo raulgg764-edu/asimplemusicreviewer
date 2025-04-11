@@ -17,24 +17,31 @@ const artistID = artist.replaceAll(" ", "");
 /*const artistImg  = await fetch(`https://api.spotify.com/v1/search?q=${artist}&type=artist&limit=1`,{method:"GET", headers:{'Authorization':`Bearer ${spotifyToken}`}}).then(res => res.json()).then((data)=>{
     return data.artists.items[0].images[0].url
 })*/
-const artistImg = await getImageSpotify(artistID, "search")
+const artistImg = await getImageSpotify(artistID, "search");
 ---
 
 <article
-    class=`w-full h-full group transition-all ease-in-out transform text-white bg-zinc-900 rounded-2xl hover:scale-105`
+    class=`w-full h-full group transition-all ease-in-out transform text-white bg-zinc-900`
     onclick={`window.modal${artistID}.showModal()`}
 >
     <div
         class="relative list-none hover:cursor-pointer select-none font-bold flex justify-between h-full w-full"
     >
-        <img class="flex rounded-2xl object-cover w-full" src={artistImg} />
+        <img class="flex object-cover w-full" src={artistImg} />
         <div
-            class="absolute h-full z-1 shadow-[inset_0px_-80px_60px_-10px_rgba(0,_0,_0,_1)] bottom-0 text-white flex items-end w-full rounded-xl"
+            class="absolute z-1 bottom-0 group-hover:top-0 transition-all duration-200 text-white flex items-start w-full  shadow-[inset_0px_-100px_0px_0px_black] group-hover:shadow-[inset_0px_-800px_0px_0px_black]"
         >
-            <p class="line-clamp-1 px-4 py-2 text-2xl">{artist}</p>
+            <p
+                class="line-clamp-1 h-full  px-4 py-4 text-2xl w-full text-white group-hover:text-emerald-400 duration-500 ease-in-out transition-all"
+            >
+                {artist}
+            </p>
         </div>
     </div>
-    <dialog id=`modal${artistID}` class=" backdrop:bg-black/80 w-full xl:w-3/4 xl:h-3/4 rounded-2xl ">
+    <dialog
+        id=`modal${artistID}`
+        class="backdrop:bg-black/80 w-full xl:w-3/4 xl:h-3/4 rounded-2xl"
+    >
         <ArtistsModal
             artist={artist}
             releases={artistReleases}
@@ -44,9 +51,7 @@ const artistImg = await getImageSpotify(artistID, "search")
 </article>
 
 <style>
-    
     dialog[open] {
-        
         position: fixed;
         left: 50%;
         top: 50%;

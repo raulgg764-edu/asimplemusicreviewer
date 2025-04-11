@@ -1,11 +1,11 @@
 <nav
-    class="transform transition fixed top-0 z-10 flex flex-col md:flex-row justify-end items-center md:bg-white m-4 px-4 md:rounded-full text-gray-900 font-bold text-lg"
+    class="transform transition fixed top-0 z-10 flex flex-col md:flex-row justify-end items-center md:bg-black m-4 px-4 md:rounded-full text-white font-bold text-lg"
 >
-    <div class="flex bg-white rounded-full nav-top">
+    <div class="flex bg-black rounded-full nav-top">
         <div class="py-2 px-4 flex items-center">
             <a class="group hover:cursor-pointer" href={"/"}>
                 <img
-                    class="w-8 transform transition group-hover:animate-spin"
+                    class="w-8 transform transition group-hover:animate-spin invert-100"
                     src="/home.svg"
                 /></a
             >
@@ -15,7 +15,7 @@
             <button
                 type="button"
                 id="btnMenu"
-                class="flex items-center p-1 w-8 h-8 justify-center text-sm text-gray-900 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 hover:cursor-pointer"
+                class="flex items-center p-1 w-8 h-8 justify-center text-sm text-white rounded-lg md:hidden hover:bg-black focus:outline-none focus:ring-2 focus:ring-gray-500 hover:cursor-pointer"
                 aria-controls="navbar-default"
                 aria-expanded="false"
             >
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class="hidden flex-col md:flex bg-white" id="navbar">
+    <div class="hidden flex-col md:flex bg-black" id="navbar">
         <ul class="flex flex-col md:flex-row justify-end items-center navExtra">
             <span class="md:vertical-line"></span>
             <li class="py-2 px-4">
@@ -62,7 +62,7 @@
     .vertical-line {
         width: 1px;
         height: 1.1em;
-        background-color: oklch(0.21% 0.034 264.665 / 20%);
+        background-color: white;
     }
 
     .underline-animation {
@@ -76,7 +76,7 @@
         left: 50%;
         width: 0;
         height: 2px;
-        background-color: oklch(0.21 0.034 264.665);
+        background-color: white;
         transition:
             width 0.3s ease,
             left 0.3s ease;
@@ -93,7 +93,7 @@
         width: 100%;
         top: -30%;
         z-index: -2;
-        background-color: white;
+        background-color: black;
         border-radius: 16px;
         transition: all;
     }
@@ -103,7 +103,7 @@
         position: absolute;
         border-radius: 16px;
         animation: show-nav 0.3s;
-        transition: all ease-in-out;
+        transition: all ease-in-out forwards;
         top: 100%;
         height: 90px;
         z-index: -1;

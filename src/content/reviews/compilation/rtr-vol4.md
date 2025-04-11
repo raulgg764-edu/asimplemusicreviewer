@@ -24,7 +24,7 @@ type: 'compilation'
 rate: 6.5
 spotifyUrl: 'https://open.spotify.com/intl-es/album/4K4aN3KFm3ZARF30AXQOKw?si=r-6oa3AESqCMMqNpN4ZfSA'
 img: 'https://i.scdn.co/image/ab67616d00001e02cf99b38d37e2680f7dec6c9b'
-color: '#443922'
+color: '#fcba03'
 reviewDate: '2025-03-15'
 ---
 

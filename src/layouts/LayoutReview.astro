@@ -13,7 +13,7 @@ const {customTitle, extraClass, color} = Astro.props
 		<title>a simple music reviewer: {customTitle}</title>
 		<ClientRouter></ClientRouter>
 	</head>
-	<body class:list={["w-full min-h-screen flex flex-col items-center",extraClass]} style=`background: linear-gradient(to bottom, ${color}, oklch(0.21 0.006 285.885));`>
+	<body class:list={["w-full min-h-screen flex flex-col items-center",extraClass]} style=`background-color:${color}`>
 		<slot />
 	</body>
 </html>

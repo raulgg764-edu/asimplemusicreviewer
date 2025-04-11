@@ -24,11 +24,13 @@ const dateReviewed = new Date(review.data.reviewDate).toLocaleDateString(
 
 const spotifyImg = await getImageSpotify(review.data.spotifyID, "id")
 const img = spotifyImg ? spotifyImg : review.data.img;
+const colorMain = review.data.color
 ---
 
 <a
     href=`../reviews/${review.id}`
-    class=`h-full group transition-all ease-in-out transform shadow-2xl text-white w-full bg-zinc-800 hover:bg-zinc-700 rounded-2xl px-4 md:px-8 py-4 hover:shadow-xl dark:hover:shadow-black/30 hover:scale-105`
+    class=` card h-full group transition-all ease-in-out transform w-full px-4 md:px-8 py-4 text-black font-bold`
+    style={`--colorcard: ${colorMain}; background-color: ${colorMain}`}
 >
     <article class="flex flex-row w-full items-center justify-between">
         <div class="flex flex-col w-6/12 md:w-10/12">
@@ -51,4 +53,22 @@ const img = spotifyImg ? spotifyImg : review.data.img;
             />
         </div>
     </article>
+    <style>
+        
+        .card:hover{
+            animation: hover 0.2s ease-in-out forwards;    
+            outline: 1px solid var(--colorcard) ;
+        }
+        @keyframes hover {
+            0%{
+                
+                box-shadow: inset 0vw 0px 0px 0px black;
+            }
+            100% {
+                color: var(--colorcard);
+                box-shadow: inset 100vw 0px 0px 0px black;
+                
+            }
+        }
+    </style>
 </a>

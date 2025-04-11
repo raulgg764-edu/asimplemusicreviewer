@@ -38,32 +38,116 @@ let image: string = releaseItem.data.img;
 
 const spotifyImg = await getImageSpotify(releaseItem.data.spotifyID, "id")
 const img = spotifyImg ? spotifyImg : releaseItem.data.img;
+const color = releaseItem.data.color
+const artistImg = await getImageSpotify(releaseItem.data.artists[1], "search");;
 ---
 
 <a
     class:list={[
-        sizeClass,
-        "group transform relative flex flex-col rounded-2xl transition-all ease-in-out overflow-hidden hover:cursor-pointer hover:scale-105",
+        "base group py-20 w-full transform flex flex-col md:flex-row transition-all ease-in-out overflow-hidden text-black font-semibold md:px-12 h-screen ",
         extraClass,
     ]}
+    style=`background-color: ${color};  border:2px solid var(--maincolor);`
     href=`../reviews/${releaseItem.id}`
+    id=`${releaseItem.id}`
 >
     <article class:list={[
-        "group transform relative flex flex-col overflow-hidden h-full",
+        "group transform flex flex-col md:flex-row w-full items-center  gap-4 h-full ",
     ]}>
-        <img
-            class="transform transition h-full object-cover ease-in-out"
+    
+        <div class="flex items-center w-3/4 md:w-1/2 h-2/3 md:h-full aspect-square ">
+            <img
+            class="cover z-10  transform transition object-cover ease-in-out w-xl md:w-full"
             src={img}
             transition:name=`image-${release.id}`
             transition:persist
-        />
+            />
+            <img
+            class="artistCover z-0 transform transition object-cover ease-in-out w-xl md:w-full"
+            src={artistImg}
+            />
+        </div>
+     
+     
+  </div>
         <div
-            class="transform absolute inset-0 p-4 flex flex-col justify-end transition ease-in-out shadow-[inset_0px_-80px_60px_-10px_rgba(0,_0,_0,_1)]"
+            class="releaseData transform py-4 md:py-8 md:px-8 flex flex-col transition ease-in-out gap-8 hover:cursor-pointer h-auto w-3/4 md:w-1/2 "
+            style={`--maincolor: ${color};`}
         >
-            <h2 transition:name=`title-${release.id}` class="text-2xl md:text-4xl text-white">{releaseItem.data.title}</h2>
-            <p transition:name=`artists-${release.id}`  class="text-sm md:text-lg text-white line-clamp-1">
+            <h2 transition:name=`title-${release.id}` class="text-4xl sm:text-5xl md:text-6xl line-clamp-3 font-extrabold break-words ">{releaseItem.data.title}</h2>
+            <p transition:name=`artists-${release.id}`  class="text-2xl line-clamp-1 sm:line-clamp-2 md:line-clamp-none font-semibold ">
                 {releaseItem.data.artists.join(", ")}
             </p>
         </div>
+    
     </article>
+
+    <style>
+        img{
+            
+        }
+
+        /*.a:hover{
+            a {
+                transition: all 0.2s ease-in-out;
+                animation: blackHover 0.2s ease-in-out forwards;
+            }
+            .releaseData{
+                outline: 2px solid var(--maincolor);
+                color: var(--maincolor)
+            }
+        }*/
+
+        a:has(.releaseData:hover){
+            animation: blackHover 0.2s ease-in-out forwards;
+            background-color: black;
+            .releaseData{
+                outline: 2px solid var(--maincolor);
+                color: var(--maincolor)
+            }
+        }
+
+        .cover{
+            transition: all 0.2s ease-in-out;
+        }
+
+        .cover:hover{
+            opacity: 0;
+        }
+
+        .artistCover{
+            transform: translateX(-100%);
+        }
+
+        @keyframes cicle {
+            50% {
+                opacity: 0;
+            }
+
+            100%{
+                opacity: 1;
+            }
+        }
+
+        @keyframes blackHover {
+            0% {
+                color: black;
+            }
+
+            25% {
+                box-shadow: inset 25vw 0px 0px 0px #000000;
+                color: var(--maincolor);
+            }
+
+            50% {
+                box-shadow: inset 50vw 0px 0px 0px #000000;
+                color: var(--maincolor);
+            }
+            
+            100% {
+                box-shadow: inset 100vw 0px 0px 0px #000000;
+                color: var(--maincolor);
+            }
+        }
+    </style>
 </a>

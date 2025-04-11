@@ -36,10 +36,13 @@ const img = spotifyImg ? spotifyImg : release.img;
 	color={color}
 >
 	<NavBar transition:persist />
-	<section class="min-h-screen flex flex-col text-white w-full relative">
-		<header class="flex flex-col justify-end w-full relative ">
+	<section class=" flex flex-col text-black w-full">
+		<header class="flex flex-col justify-end w-full relative bg-black "
+		 style=`color:${color};
+		 outline: 2px solid ${color}`
+		>
 			<div
-				class="z-1 px-16 md:pt-24 flex flex-col md:flex-row justify-end items-center md:items-star"
+				class="z-1 px-16 pb-12 md:py-24 flex flex-col md:flex-row justify-end items-center md:items-star"
 			>
 				<img
 					id="img"
@@ -53,20 +56,20 @@ const img = spotifyImg ? spotifyImg : release.img;
 				>
 					<h1
 						transition:name=`title-${frontmatter.id}`
-						class="font-bold text-6xl text-wrap md:text-7xl pb-4 break-words break-all md:break-normal"
+						class="font-bold text-5xl text-wrap md:text-7xl pb-4 break-words break-all md:break-normal"
 					>
 						{release.title}
 					</h1>
 					<h3
 						transition:name=`artists-${frontmatter.id}`
-						class="text-2xl md:text-4xl text-wrap font-thin break-words break-all md:break-normal"
+						class="text-2xl md:text-4xl text-wrap font-semibold break-words break-all md:break-normal "
 					>
 						{release.artists.join(", ")}
 					</h3>
 
 					<div
 						transition:name=`releaseType-${frontmatter.id}`
-						class="flex flex-row gap-4 py-4 items-center"
+						class="flex flex-row gap-4 py-4 items-center font-thin flex-wrap"
 					>
 						<h4 class="text-2xl capitalize">
 							{release.type}
@@ -80,7 +83,7 @@ const img = spotifyImg ? spotifyImg : release.img;
 						</h4>
 						<span>·</span>
 						<h4
-							transition:name=`dateRelease-${frontmatter.id}`
+							transition:name=`dateReviewed-${frontmatter.id}`
 							class="text-2xl"
 						>
 							Reviewed on {dateReviewed}
@@ -90,6 +93,8 @@ const img = spotifyImg ? spotifyImg : release.img;
 				</div>
 			</div>
 		</header>
-		<slot />
+		<div class="backdrop-brightness-90"> 
+			<slot />
+		</div>
 	</section>
 </LayoutReview>

@@ -7,7 +7,7 @@ const { prevPage, nextPage } = Astro.props;
         prevPage && (
             <a
                 href={`?page=${prevPage}`}
-                class="px-4 bg-white hover:bg-black rounded-full  text-black hover:text-white transition-colors"
+                class="px-4 hover:bg-white bg-black rounded-full  hover:text-black text-white transition-colors"
             >
                 Previous
             </a>
@@ -17,7 +17,7 @@ const { prevPage, nextPage } = Astro.props;
         nextPage && (
             <a
                 href={`?page=${nextPage}`}
-                class="px-4 bg-white hover:bg-black rounded-full  text-black hover:text-white transition-colors"
+                class="px-4 hover:bg-white bg-black rounded-full  hover:text-black text-white transition-colors"
             >
                 Next
             </a>

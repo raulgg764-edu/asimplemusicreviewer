@@ -40,5 +40,20 @@ async function getImageSpotify(searchValue, type) {
     img = "https://i.scdn.co/image/ab6761610000e5ebad063956e4de03835dba4828";
     return img
 }  
+export function getTextColorForBackground(bgColor) {
+	// Remueve el '#' si existe
+	const color = bgColor.replace("#", "");
 
-export {getHomeReleases, spotifyToken, getImageSpotify}
+	// Convierte el hex a RGB
+	const r = parseInt(color.substr(0, 2), 16);
+	const g = parseInt(color.substr(2, 2), 16);
+	const b = parseInt(color.substr(4, 2), 16);
+
+	// Luminancia relativa (fórmula de WCAG)
+	const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+	// Si es muy clara, regresa texto oscuro, si es oscura, regresa texto claro
+	return luminance > 0.6 ? "text-black" : "text-white";
+}
+
+export {getHomeReleases, spotifyToken, getImageSpotify,getTextColorForBackground}
