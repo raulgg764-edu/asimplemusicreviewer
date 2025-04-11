@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.3",
+    "@astrojs/netlify": "^6.2.5",
     "@astrojs/react": "^4.2.1",
     "@rtcoder/dominant-color": "^0.1.4",
     "@tailwindcss/vite": "^4.0.12",

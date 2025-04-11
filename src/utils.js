@@ -57,4 +57,4 @@ export function getTextColorForBackground(bgColor) {
 	return luminance > 0.6 ? "bg-black/10" : "backdrop-brightness-90";
 }
 
-export {getHomeReleases, spotifyToken, getImageSpotify,getTextColorForBackground}
+export {getHomeReleases, spotifyToken, getImageSpotify}

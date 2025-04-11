@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import NavBar from "../../components/NavBar.astro";
+import PaginationButton from "../../components/PaginationButton.astro";
+import ArtistItem from "../../components/ArtistItem.astro";
+
+export const prerender = false;
+
+const reviews = await getCollection('reviews');
+const sortedReviews = reviews.sort((a,b)=> new Date(b.data.releaseDate).getTime() - new Date(a.data.releaseDate).getTime());
+const artists = [...new Set( sortedReviews.map((val)=>{
+	return val.data.artists
+}).flat())].sort((a,b) => a.localeCompare(b))
+
+const artistsPerPage = 8;
+const url = new URL(Astro.request.url);
+const currentPage = Number(url.searchParams.get('page')||1);
+
+const totalArtists = artists.length;
+const totalPages = Math.ceil(totalArtists  / artistsPerPage);
+
+const startIndex = (currentPage-1) * artistsPerPage;
+const endIndex = Math.min(startIndex + artistsPerPage, totalArtists);
+const currentArtists = artists.slice(startIndex, endIndex);
+
+const prevPage = currentPage > 1 ? currentPage - 1 : null; 
+const nextPage = currentPage < totalPages ? currentPage + 1 : null; 
+
+---
+
+<Layout customTitle="all the artists" extraClass ="md:justify-between py-20 bg-emerald-400">
+    <NavBar transition:persist></NavBar>
+    <div class="grid md:h-full md:grid-cols-4 items-start gap-4 px-8 md:px-16 w-full grid-rows-2">
+        {
+            currentArtists.map((artist) => 
+                <ArtistItem artist={artist} reviews={sortedReviews}></ArtistItem>
+            )
+        }
+    </div>
+    <div class="pt-8">
+        <PaginationButton prevPage = {prevPage} nextPage = {nextPage}></PaginationButton>
+    </div>
+    
+</Layout>
