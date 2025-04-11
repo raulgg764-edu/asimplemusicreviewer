@@ -11,17 +11,11 @@ reviewDate: '2025-04-10'
 ---
 
 
-
-## Introduction
-
----
-
 This is my first time listening to a Travis Scott album. I'm going to be honest — this is not my type of music. Personally, I'm more into EDM and experimental stuff, but I really wanted to explore more genres. So I asked some of my friends, and one of them recommended this... so here we go!
 
 
 ## First reaction
 
----
 First of all, the album's start is okay. There are some ideas that are really good, but it needs a lot more to turn into something big — like holding all that power and delivering bigger and bigger tracks. *Stargazing* and *Carousel* are decent openers. Not that interesting, but a great way to introduce you to the concept.
 
 *Sicko Mode* is a classic. I've already listened to it, and I really like it — just that.
@@ -36,7 +30,6 @@ Going into the last part of the album, I noticed how well-crafted the story is. 
 
 ## Conclusion
 
----
 
 After listening to the entire album, I can say that I've been missing out on a lot of great music from Travis Scott. In terms of production and beats, you can feel that the whole team put a lot of effort into turning Travis' ideas into something all listeners can experience.
 

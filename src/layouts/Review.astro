@@ -37,9 +37,8 @@ const img = spotifyImg ? spotifyImg : release.img;
 >
 	<NavBar transition:persist />
 	<section class=" flex flex-col text-black w-full">
-		<header class="flex flex-col justify-end w-full relative bg-black "
-		 style=`color:${color};
-		 outline: 2px solid ${color}`
+		<header class="flex flex-col justify-end w-full relative bg-black md:h-screen"
+		style={`--maincolor: ${color};`}
 		>
 			<div
 				class="z-1 px-16 pb-12 md:py-24 flex flex-col md:flex-row justify-end items-center md:items-star"
@@ -56,7 +55,7 @@ const img = spotifyImg ? spotifyImg : release.img;
 				>
 					<h1
 						transition:name=`title-${frontmatter.id}`
-						class="font-bold text-5xl text-wrap md:text-7xl pb-4 break-words break-all md:break-normal"
+						class="font-extrabold text-5xl text-wrap md:text-7xl pb-4 break-words break-all md:break-normal"
 					>
 						{release.title}
 					</h1>
@@ -93,8 +92,16 @@ const img = spotifyImg ? spotifyImg : release.img;
 				</div>
 			</div>
 		</header>
-		<div class="backdrop-brightness-90"> 
+		<div class="bg-black"> 
 			<slot />
 		</div>
 	</section>
 </LayoutReview>
+
+<style>
+header{
+	color: var(--maincolor);
+	border-bottom: 2px solid var(--maincolor);
+}
+
+</style>

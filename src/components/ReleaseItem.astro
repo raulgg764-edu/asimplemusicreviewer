@@ -21,8 +21,8 @@ const dateReviewed = new Date(review.data.reviewDate).toLocaleDateString(
     },
 );
 
-
-const spotifyImg = await getImageSpotify(review.data.spotifyID, "id")
+const spotifyID = review.data.spotifyUrl.split("/")[5].split("?")[0]
+const spotifyImg = await getImageSpotify(spotifyID, "id")
 const img = spotifyImg ? spotifyImg : review.data.img;
 const colorMain = review.data.color
 ---

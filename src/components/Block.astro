@@ -36,10 +36,11 @@ let sizeClass: string = `${colsClassMap[size.cols]} ${rowsClassMap[size.rows]}`;
 
 let image: string = releaseItem.data.img;
 
-const spotifyImg = await getImageSpotify(releaseItem.data.spotifyID, "id")
+const spotifyID = releaseItem.data.spotifyUrl.split("/")[5].split("?")[0]
+const spotifyImg = await getImageSpotify(spotifyID, "id")
 const img = spotifyImg ? spotifyImg : releaseItem.data.img;
 const color = releaseItem.data.color
-const artistImg = await getImageSpotify(releaseItem.data.artists[1], "search");;
+const artistImg = await getImageSpotify(releaseItem.data.artists[0], "search");;
 ---
 
 <a
@@ -63,7 +64,7 @@ const artistImg = await getImageSpotify(releaseItem.data.artists[1], "search");;
             transition:persist
             />
             <img
-            class="artistCover z-0 transform transition object-cover ease-in-out w-xl md:w-full"
+            class="artistCover z-0 transform transition object-cover ease-in-out w-xl md:w-full aspect-square"
             src={artistImg}
             />
         </div>
