@@ -31,7 +31,6 @@ async function getImageSpotify(searchValue, type) {
     let img;
     if(type==="id"){
         const spotifyData = await fetch(`https://api.spotify.com/v1/albums/${searchValue}`,{method:"GET", headers:{'Authorization':`Bearer ${spotifyToken}`}}).then(res => res.json())
-        console.log(searchValue)
         img = spotifyData.images[0].url;
         
     } else if (type==="search") {

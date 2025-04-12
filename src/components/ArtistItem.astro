@@ -2,11 +2,18 @@
 import { getImage } from "astro:assets";
 import { getImageSpotify, spotifyToken } from "../utils";
 import ArtistsModal from "./ArtistsModal.astro";
+import { getCollection } from "astro:content";
 
-const { artist, reviews } = Astro.props;
+const { artist } = Astro.props;
+const reviews = await getCollection("reviews");
+    const sortedReviews = reviews.sort(
+        (a, b) =>
+            new Date(b.data.releaseDate).getTime() -
+            new Date(a.data.releaseDate).getTime(),
+    );
 
 const getArtistReleases = (artist: string) => {
-    return reviews.filter((release: any) =>
+    return sortedReviews.filter((release: any) =>
         release.data.artists.includes(artist),
     );
 };
@@ -21,7 +28,7 @@ const artistImg = await getImageSpotify(artistID, "search");
 ---
 
 <article
-    class=`w-full h-full group transition-all ease-in-out transform text-white bg-zinc-900`
+    class=`w-full h-full group transition-all ease-in-out transform text-white bg-zinc-900 `
     onclick={`window.modal${artistID}.showModal()`}
 >
     <div
@@ -29,7 +36,7 @@ const artistImg = await getImageSpotify(artistID, "search");
     >
         <img class="flex object-cover w-full" src={artistImg} />
         <div
-            class="absolute z-1 bottom-0 group-hover:top-0 transition-all duration-200 text-white flex items-start w-full  shadow-[inset_0px_-100px_0px_0px_black] group-hover:shadow-[inset_0px_-800px_0px_0px_black]"
+            class="absolute z-1  bottom-0 group-hover:top-0 transition-all duration-200 text-white flex items-start w-full  shadow-[inset_0px_-100px_0px_0px_black] group-hover:shadow-[inset_0px_-800px_0px_0px_black]"
         >
             <p
                 class="line-clamp-1 h-full  px-4 py-4 text-2xl w-full text-white group-hover:text-emerald-400 duration-500 ease-in-out transition-all"
